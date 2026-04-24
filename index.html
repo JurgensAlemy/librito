@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="screen1" class="intro-screen active">
+        <div class="apology-container">
+            <div class="apology-text">Moshitooooo se que el Día del Libro ya pasó asi que perdon por no tener nd listo...</div>
+            <div class="apology-sub">Lamento muchísimo no haberte dado esto. Perdoname enserio mi vida, esto es como para ver si te gusta hermosa, yap? espero y si.</div>
+        </div>
+        <button class="btn-intro" onclick="nextScreen()">Aceptarias continuar? bonita😘🤧</button>
+    </div>
+
+    <div id="screen2" class="intro-screen">
+        <div class="hype-text">
+            Magnetizado<br>
+            <span style="font-size: 0.4em; color: #777; font-family: 'Montserrat', sans-serif; letter-spacing: 2px;">POR CARLOS BUSQUED</span>
+        </div>
+        <div style="color: #666; margin-top: 20px; font-style: italic; text-align: center; max-width: 600px; animation: fadeUp 2s ease forwards 1s; opacity: 0;">
+            "Un libro sobre el crimen, pero también sobre una manera de habitar el mundo, o de ausentarse en él."
+        </div>
+        <button class="btn-intro" onclick="goToBook()">Comenzar Lectura</button>
+    </div>
+
+    <script>
+        function nextScreen() {
+            document.getElementById('screen1').classList.remove('active');
+            setTimeout(() => document.getElementById('screen2').classList.add('active'), 800);
+        }
+
+        function goToBook() {
+            document.getElementById('screen2').style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'introduccion.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+/* ================= RESET Y VARIABLES ================= */
+:root {
+    --bg-color: #080808;
+    --text-color: #d8d8d8;
+    --accent-color: #a10000;
+    --nav-width: 280px;
+    --reader-bg: #111111;
+}
+
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); font-family: 'Lora', serif; overflow-x: hidden; }
+
+/* ================= PANTALLAS DE INTRODUCCIÓN ================= */
+.intro-screen {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background-color: #000; z-index: 100;
+    opacity: 0; pointer-events: none; transition: opacity 1.2s ease, transform 1.2s ease;
+    transform: scale(0.98);
+}
+.intro-screen.active { opacity: 1; pointer-events: auto; transform: scale(1); }
+
+.apology-container { text-align: center; }
+.apology-text {
+    font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 2.2em; color: #fff;
+    margin-bottom: 20px; opacity: 0; transform: translateY(20px);
+    animation: fadeUp 2s ease forwards 0.5s;
+}
+.apology-sub {
+    font-family: 'Lora', serif; font-style: italic; color: #777; font-size: 1.2em;
+    opacity: 0; animation: fadeUp 2s ease forwards 2s;
+}
+
+.hype-text {
+    font-family: 'Cinzel', serif; font-size: 2.5em; color: var(--accent-color);
+    text-align: center; max-width: 800px; opacity: 0;
+    animation: pulseText 4s infinite, fadeUp 2s ease forwards 0.5s;
+}
+
+.btn-intro {
+    margin-top: 50px; padding: 12px 30px; font-family: 'Montserrat', sans-serif; font-size: 1em;
+    color: #fff; background: transparent; border: 1px solid #555; border-radius: 30px;
+    cursor: pointer; transition: all 0.4s ease; opacity: 0; animation: fadeUp 2s ease forwards 3.5s;
+}
+.btn-intro:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ================= LECTOR WEB ================= */
+.app-container { display: flex; width: 100vw; height: 100vh; animation: fadeUp 1s ease; }
+
+nav.toc {
+    width: var(--nav-width); height: 100%; background: #050505; border-right: 1px solid #222;
+    padding: 30px 20px; overflow-y: auto; flex-shrink: 0;
+}
+.book-cover { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+.book-cover h1 { font-family: 'Cinzel', serif; font-size: 1.8em; color: #fff; margin: 0; letter-spacing: 1px; }
+.book-cover h3 { font-family: 'Montserrat', sans-serif; font-size: 0.8em; color: #666; font-weight: 300; text-transform: uppercase; letter-spacing: 2px; }
+
+nav.toc ul { list-style: none; padding: 0; margin: 0; }
+nav.toc li { margin-bottom: 8px; }
+.nav-btn {
+    display: block; width: 100%; text-decoration: none; color: #777; font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em; text-align: left; padding: 10px 15px; transition: all 0.3s ease; border-radius: 4px;
+}
+.nav-btn:hover { background: #1a1a1a; color: #fff; }
+.nav-btn.active-link { background: #1a0000; color: #ff6666; border-left: 3px solid var(--accent-color); }
+
+.reader-area { flex-grow: 1; height: 100%; overflow-y: auto; background-color: var(--reader-bg); padding: 60px 40px; }
+.content-wrapper { max-width: 700px; margin: 0 auto; }
+
+.chapter-title { font-family: 'Cinzel', serif; font-size: 2.2em; color: #fff; margin-top: 0; margin-bottom: 40px; text-align: center; }
+p { font-size: 1.15em; line-height: 1.8; margin-bottom: 25px; text-align: justify; text-indent: 30px; color: #ccc; }
+p.first-p { text-indent: 0; }
+p.first-p::first-letter { font-size: 3.2em; font-family: 'Cinzel', serif; float: left; margin-right: 8px; line-height: 0.8; color: var(--accent-color); }
+
+.chapter-footer { margin-top: 60px; padding-top: 30px; border-top: 1px solid #222; display: flex; justify-content: space-between; padding-bottom: 50px; }
+.page-btn { text-decoration: none; border: 1px solid #444; color: #aaa; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 0.9em; transition: all 0.3s ease; border-radius: 4px; }
+.page-btn:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.05); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulseText { 0% { text-shadow: 0 0 10px rgba(161,0,0,0.2); } 50% { text-shadow: 0 0 20px rgba(161,0,0,0.8); } 100% { text-shadow: 0 0 10px rgba(161,0,0,0.2); } }
+
+@media (max-width: 900px) {
+    .app-container { flex-direction: column; }
+    nav.toc { width: 100%; height: auto; max-height: 250px; border-right: none; border-bottom: 1px solid #222; }
+    .reader-area { padding: 30px 20px; }
+}
